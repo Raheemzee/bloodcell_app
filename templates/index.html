@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blood Cell Analyzer</title>
+    <style>
+        body {
+            background: rgb(255, 125, 125);
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        img {
+            max-width: 400px;
+            border: 2px solid #ccc;
+            margin-top: 10px;
+        }
+        .result {
+            margin: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1><strong>Blood Cell Analyzer</strong></h1>
+
+    <br>
+    <br>
+
+    <!-- Smear Upload -->
+    <h2>Upload Blood Smear Images</h2>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="files" multiple>
+        <button type="submit">Upload and Count</button>
+    </form>
+
+    {% if results %}
+        <h3>Smear Image Results:</h3>
+        {% for result in results %}
+            <div class="result">
+                <h4>{{ result.filename }}</h4>
+                <ul>
+                    {% for cell_type, count in result.cell_counts.items() %}
+                        <li><strong>{{ cell_type }}:</strong> {{ count }}</li>
+                    {% endfor %}
+                </ul>
+                <img src="{{ result.processed_image }}" alt="Processed Image">
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <hr>
+
+    <!-- Single Cell Upload -->
+    <h2>Upload Single-Cell Images</h2>
+    <form action="/classify-single" method="post" enctype="multipart/form-data">
+        <input type="file" name="single_files" multiple>
+        <button type="submit">Classify Cells</button>
+    </form>
+
+    {% if results_single %}
+        <h3>Single Cell Predictions:</h3>
+        {% for result in results_single %}
+            <div class="result">
+                <h4>{{ result.filename }}</h4>
+                <p><strong>Class:</strong> {{ result.predicted_class }}</p>
+                <p><strong>Probability:</strong> {{ result.confidence }}</p>
+                <img src="{{ result.image_url }}" alt="Single Cell Image">
+            </div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
