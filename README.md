@@ -69,8 +69,7 @@ http://localhost:5000
 
 ---
 
-## 📸 Screenshots
-*(Insert screenshots here of the UI and example outputs)*<img width="942" alt="app2" src="https://github.com/user-attachments/assets/66aeae66-0616-4cf1-baa1-1ab3eaf5959a" />
+## 📸 Screenshots<img width="942" alt="app2" src="https://github.com/user-attachments/assets/66aeae66-0616-4cf1-baa1-1ab3eaf5959a" />
 <img width="939" alt="app1" src="https://github.com/user-attachments/assets/a5ce2b2b-b4fa-4537-95c3-71bf055bb9a1" />
 
 
